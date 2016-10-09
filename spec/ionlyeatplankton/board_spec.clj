@@ -3,5 +3,5 @@
             [ionlyeatplankton.board :refer :all]))
 
 (describe "Board"
-  (it "a new board is empty"
-    (should= true (empty? (create-board 3)))))
+  (it "a new board of width 3 has a size 9"
+    (should= 9 (size (create-board 3)))))
