@@ -28,11 +28,9 @@
   (cond
     (= ionlyeatplankton.board.Mark (type cell))
       (do (if (= :X (.mark cell))
-            "X"
-            "O"))
-    :else cell))
-
-; These methods break the tests because speclj does not work with colour output
+        (colorize "X" :red)
+        (colorize "O" :blue)))
+    :else (colorize cell :white)))
 
 (defn- colorize [text color]
   (str (ansi color) text (ansi :reset)))
