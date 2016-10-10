@@ -5,7 +5,7 @@
 (declare show-row create-rows show-cell)
 
 (defn show-board [board]
-  (doseq [row (interpose "-----------" (create-rows board))]
+  (doseq [row (interpose "---|---|---" (create-rows board))]
     (println row)))
 
 (defn- show-row [row]
