@@ -10,3 +10,5 @@
 (defn width [board]
   (math/sqrt (count board)))
 
+(defn to-vector [board]
+  board)
