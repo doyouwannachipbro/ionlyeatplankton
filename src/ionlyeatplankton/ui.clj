@@ -18,6 +18,15 @@
                 "3) Computer vs Human\n"
                 "4) Computer vs Computer")))
 
+(defn show-invalid-selection []
+  (println "Please make a selection from the options presented"))
+
+(defn get-number [max]
+   (let [input (clojure.string/trim (read-line))]
+     (if (not (contains? (set (map str (range 1 (inc max)))) input))
+       (show-invalid-selection)
+       input)))
+
 (defn- show-row [row]
     (str " " (join " | " (map show-cell row)) " "))
 
