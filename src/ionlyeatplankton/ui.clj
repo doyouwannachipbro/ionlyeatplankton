@@ -8,6 +8,16 @@
   (doseq [row (interpose "---|---|---" (create-rows board))]
     (println row)))
 
+(defn show-welcome []
+  (println "Welcome to TicTacToe"))
+
+(defn show-game-choice-menu []
+  (println (str "Please choose the game type:\n"
+                "1) Human vs Human\n"
+                "2) Human vs Computer\n"
+                "3) Computer vs Human\n"
+                "4) Computer vs Computer")))
+
 (defn- show-row [row]
     (str " " (join " | " (map show-cell row)) " "))
 
