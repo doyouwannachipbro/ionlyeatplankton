@@ -7,4 +7,6 @@
                  [org.clojure/math.numeric-tower "0.0.4"]]
   :profiles {:dev {:dependencies [[speclj "3.3.1"]]}}
   :plugins [[speclj "3.3.1"]]
-  :test-paths ["spec"])
+  :test-paths ["spec"]
+  :main ionlyeatplankton.core
+  :aot [ionlyeatplankton.core])
