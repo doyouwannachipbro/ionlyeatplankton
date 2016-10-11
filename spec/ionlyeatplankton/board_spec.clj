@@ -40,6 +40,21 @@
                         X EMPTY EMPTY
                         O O O])))
 
+  (it "returns the winner if there is one on a column"
+    (should= X (winner [X O EMPTY
+                        X O EMPTY
+                        X EMPTY EMPTY])))
+
+  (it "returns the winner if there is one the second column"
+    (should= O (winner [X O EMPTY
+                        X O X
+                        EMPTY O EMPTY])))
+
+  (it "returns the winner if there is one on the third column"
+    (should= X (winner [EMPTY EMPTY X
+                        EMPTY EMPTY X
+                        O O X])))
+
   (it "returns :no-winner if no winner on any row"
     (should= :no-winner (winner [X X EMPTY
                                  O O EMPTY
