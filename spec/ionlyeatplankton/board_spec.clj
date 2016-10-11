@@ -23,5 +23,10 @@
   (it "knows the available moves"
     (should= [1 2 3 4 5 6 7] (available-moves [X EMPTY EMPTY
                                                EMPTY EMPTY EMPTY
-                                               EMPTY EMPTY O]))))
+                                               EMPTY EMPTY O])))
+
+  (it "knows when there is a winner on a row"
+    (should (winner? [X X X
+                      O O EMPTY
+                      EMPTY EMPTY EMPTY]))))
 

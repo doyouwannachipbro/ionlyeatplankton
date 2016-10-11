@@ -29,6 +29,9 @@
 (defn available-moves [board]
   (map first (filter (comp isEmpty? last) (map-indexed vector board))))
 
+(defn winner? [board]
+   distinct (partition (width board) board))
+
 (defn- isMark? [cell]
   (= (type cell) Mark))
 
