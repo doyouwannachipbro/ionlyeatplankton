@@ -12,6 +12,12 @@
     O
     X)))
 
+(defmulti game-state (fn [game] [(full? game) (type (winner game))]))
+(defmethod game-state [true ionlyeatplankton.board.Mark] [game] :winner)
+(defmethod game-state [false ionlyeatplankton.board.Mark] [game] :winner)
+(defmethod game-state [true clojure.lang.Keyword] [game] :draw)
+(defmethod game-state [false clojure.lang.Keyword] [game] :inplay)
+
 (defn- count-marks [mark game]
   (count (filter (partial = mark) game)))
 
