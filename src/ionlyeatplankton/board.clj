@@ -43,7 +43,7 @@
 
 (defn- combos [board]
   (let [rows (rows board)]
-  (reduce into [] (vector rows (columns rows) (diagonals rows)))))
+    (reduce into [] (vector rows (columns rows) (diagonals rows)))))
 
 (defn- rows [board]
   (partition (width board) board))
@@ -52,7 +52,9 @@
   (apply map vector rows))
 
 (defn- diagonals [rows]
-   rows)
+  (vector
+    (map-indexed (fn [index value] (get (vec value) index)) rows)
+    (map-indexed (fn [index value] (get (vec (reverse value)) index)) rows)))
 
 (defn- isMark? [cell]
   (= (type cell) Mark))

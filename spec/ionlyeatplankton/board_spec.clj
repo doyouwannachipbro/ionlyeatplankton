@@ -27,33 +27,43 @@
 
   (it "returns the winner if there is one on a row"
     (should= X (winner [X X X
-                        O O EMPTY
+                        EMPTY EMPTY EMPTY
                         EMPTY EMPTY EMPTY])))
 
   (it "returns the winner if there is one the second row"
-    (should= O (winner [X X EMPTY
+    (should= O (winner [EMPTY EMPTY EMPTY
                         O O O
-                        EMPTY X EMPTY])))
+                        EMPTY EMPTY EMPTY])))
 
   (it "returns the winner if there is one on the third row"
-    (should= O (winner [X X EMPTY
-                        X EMPTY EMPTY
+    (should= O (winner [EMPTY EMPTY EMPTY
+                        EMPTY EMPTY EMPTY
                         O O O])))
 
   (it "returns the winner if there is one on a column"
-    (should= X (winner [X O EMPTY
-                        X O EMPTY
+    (should= X (winner [X EMPTY EMPTY
+                        X EMPTY EMPTY
                         X EMPTY EMPTY])))
 
   (it "returns the winner if there is one the second column"
-    (should= O (winner [X O EMPTY
-                        X O X
+    (should= O (winner [EMPTY O EMPTY
+                        EMPTY O EMPTY
                         EMPTY O EMPTY])))
 
   (it "returns the winner if there is one on the third column"
     (should= X (winner [EMPTY EMPTY X
                         EMPTY EMPTY X
-                        O O X])))
+                        EMPTY EMPTY X])))
+
+  (it "returns the winner if there is one on the left diagonal"
+    (should= X (winner [X EMPTY EMPTY
+                        EMPTY X EMPTY
+                        EMPTY EMPTY X])))
+
+  (it "returns the winner if there is one on the right diagonal"
+    (should= O (winner [EMPTY EMPTY O
+                        EMPTY O EMPTY
+                        O EMPTY EMPTY])))
 
   (it "returns :no-winner if no winner on any row"
     (should= :no-winner (winner [X X EMPTY
