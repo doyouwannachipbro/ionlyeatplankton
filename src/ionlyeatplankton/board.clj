@@ -1,6 +1,8 @@
 (ns ionlyeatplankton.board
   (:use [clojure.math.numeric-tower :only (sqrt) :as math]))
 
+(declare isMark?)
+
 (deftype Mark [mark])
 (def X (Mark. :X))
 (def O (Mark. :O))
@@ -17,5 +19,11 @@
 (defn width [board]
   (math/sqrt (count board)))
 
+(defn full? [board]
+  (every? isMark? board))
+
 (defn to-vector [board]
   board)
+
+(defn- isMark? [cell]
+  (= (type cell) Mark))

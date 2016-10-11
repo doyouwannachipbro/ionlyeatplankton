@@ -18,4 +18,8 @@
 
   (it "can be marked with O"
     (let [marked-board (to-vector (mark 3 O (create-board 3)))]
-      (should= :O (.mark (get marked-board 3))))))
+      (should= :O (.mark (get marked-board 3)))))
+
+  (it "knows when it is full"
+    (should (full? [X O X O X O X O X]))))
+
