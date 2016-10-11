@@ -1,7 +1,7 @@
 (ns ionlyeatplankton.board
   (:use [clojure.math.numeric-tower :only (sqrt) :as math]))
 
-(declare isMark? isEmpty? get-winning-mark combos rows columns winning-combination?)
+(declare isMark? isEmpty? get-winning-mark combos rows columns diagonals winning-combination?)
 
 (deftype Mark [mark])
 (def X (Mark. :X))
@@ -42,13 +42,17 @@
   (or (every? #{X} row) (every? #{O} row)))
 
 (defn- combos [board]
-  (reduce into [] (vector (rows board) (columns board))))
+  (let [rows (rows board)]
+  (reduce into [] (vector rows (columns rows) (diagonals rows)))))
 
 (defn- rows [board]
   (partition (width board) board))
 
-(defn- columns [board]
-  (apply map vector (rows board)))
+(defn- columns [rows]
+  (apply map vector rows))
+
+(defn- diagonals [rows]
+   rows)
 
 (defn- isMark? [cell]
   (= (type cell) Mark))
