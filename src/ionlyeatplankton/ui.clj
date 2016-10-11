@@ -21,6 +21,9 @@
 (defn show-invalid-selection []
   (println "Please make a selection from the options presented"))
 
+(defn show-move-instructions []
+  (println "Mark the board by selecting a number from 1-9"))
+
 (defn get-number [max]
    (let [input (clojure.string/trim (read-line))]
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
