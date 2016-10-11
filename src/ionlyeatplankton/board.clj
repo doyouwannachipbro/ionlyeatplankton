@@ -1,7 +1,7 @@
 (ns ionlyeatplankton.board
   (:use [clojure.math.numeric-tower :only (sqrt) :as math]))
 
-(declare isMark? isEmpty?)
+(declare isMark? isEmpty? get-winning-mark rows winning-combination?)
 
 (deftype Mark [mark])
 (def X (Mark. :X))
@@ -30,7 +30,19 @@
   (map first (filter (comp isEmpty? last) (map-indexed vector board))))
 
 (defn winner? [board]
-   distinct (partition (width board) board))
+  (cond
+    (= X (get-winning-mark board)) X
+    (= O (get-winning-mark board)) O
+    :else :no-winner))
+
+(defn- get-winning-mark [board]
+   (first (distinct (flatten (filter winning-combination? (rows board))))))
+
+(defn- winning-combination? [row]
+  (or (every? #{X} row) (every? #{O} row)))
+
+(defn- rows [board]
+  (partition (width board) board))
 
 (defn- isMark? [cell]
   (= (type cell) Mark))

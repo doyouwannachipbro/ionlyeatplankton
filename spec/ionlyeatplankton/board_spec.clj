@@ -25,8 +25,12 @@
                                                EMPTY EMPTY EMPTY
                                                EMPTY EMPTY O])))
 
-  (it "knows when there is a winner on a row"
-    (should (winner? [X X X
-                      O O EMPTY
-                      EMPTY EMPTY EMPTY]))))
+  (it "returns the winner if there is one on a row"
+    (should= X (winner [X X X
+                        O O EMPTY
+                        EMPTY EMPTY EMPTY])))
 
+  (it "returns :no-winner if no winner on any row"
+    (should= :no-winner (winner [X X EMPTY
+                                 O O EMPTY
+                                 EMPTY EMPTY EMPTY]))))
