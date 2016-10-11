@@ -30,6 +30,16 @@
                         O O EMPTY
                         EMPTY EMPTY EMPTY])))
 
+  (it "returns the winner if there is one the second row"
+    (should= O (winner [X X EMPTY
+                        O O O
+                        EMPTY X EMPTY])))
+
+  (it "returns the winner if there is one on the third row"
+    (should= O (winner [X X EMPTY
+                        X EMPTY EMPTY
+                        O O O])))
+
   (it "returns :no-winner if no winner on any row"
     (should= :no-winner (winner [X X EMPTY
                                  O O EMPTY

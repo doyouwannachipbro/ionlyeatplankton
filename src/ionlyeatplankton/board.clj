@@ -29,7 +29,7 @@
 (defn available-moves [board]
   (map first (filter (comp isEmpty? last) (map-indexed vector board))))
 
-(defn winner? [board]
+(defn winner [board]
   (cond
     (= X (get-winning-mark board)) X
     (= O (get-winning-mark board)) O
