@@ -19,14 +19,12 @@
       O
       X)))
 
-(defmulti game-state (fn [game] [(full? (.board game)) (winner (.board game))]))
-
-(defmethod game-state [true  X] [game] :winner)
-(defmethod game-state [true  O] [game] :winner)
-(defmethod game-state [false X] [game] :winner)
-(defmethod game-state [false O] [game] :winner)
-(defmethod game-state [true :no-winner] [game] :draw)
-(defmethod game-state [false :no-winner] [game] :inplay)
+(defn game-state [game]
+  (let [[full winner] [(full? (.board game)) (winner (.board game))]]
+    (cond
+      (not= winner :no-winner) :winner
+      (= full true) :draw
+      :else :inplay)))
 
 (defn- count-marks [mark game]
   (count (filter (partial = mark) game)))
