@@ -48,7 +48,7 @@
 (defn- show-cell [cell]
   (cond
     (= ionlyeatplankton.board.Mark (type (last cell)))
-      (do (if (= :X (.mark cell))
+      (do (if (= :X (.mark (last cell)))
         (colorize "X" :red)
         (colorize "O" :blue)))
     :else (colorize (first cell) :white)))
