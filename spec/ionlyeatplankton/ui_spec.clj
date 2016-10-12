@@ -37,5 +37,16 @@
 
   (it "prompts the user to make a move"
     (should= "Mark the board by selecting a number from 1-9\n"
-             (with-out-str (show-move-instructions)))))
+             (with-out-str (show-move-instructions))))
 
+  (it "shows a draw message"
+    (should= "It's a draw!\n"
+             (with-out-str (show-draw))))
+
+  (it "shows a X win message"
+    (should= "X is the winner!\n"
+             (with-out-str (show-winner (winner [X X X O O EMPTY EMPTY EMPTY EMPTY])))))
+
+  (it "shows a O win message"
+    (should= "O is the winner!\n"
+             (with-out-str (show-winner (winner [X X EMPTY O O O X EMPTY EMPTY]))))))

@@ -24,6 +24,12 @@
 (defn show-move-instructions []
   (println "Mark the board by selecting a number from 1-9"))
 
+(defn show-draw []
+  (println "It's a draw!"))
+
+(defn show-winner [mark]
+  (println (str (name (.mark mark)) " is the winner!")))
+
 (defn get-number [max]
    (let [input (clojure.string/trim (read-line))]
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
