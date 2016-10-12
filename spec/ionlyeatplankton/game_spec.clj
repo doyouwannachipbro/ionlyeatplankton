@@ -9,18 +9,18 @@
 
   (it "knows the current player is X during gameplay"
     (should= X (current-player (create-game [X O O
-                                             EMPTY EMPTY X
-                                             X O EMPTY]))))
+                                             ? ? X
+                                             X O ?]))))
 
   (it "knows the current player is O during gameplay"
-    (should= O (current-player (create-game [X O EMPTY
-                                             EMPTY EMPTY X
-                                             X O EMPTY]))))
+    (should= O (current-player (create-game [X O ?
+                                             ? ? X
+                                             X O ?]))))
 
   (it "knows when the game has a winner"
     (should= :winner (game-state (create-game [X X X
-                                               O O EMPTY
-                                               EMPTY EMPTY EMPTY]))))
+                                               O O ?
+                                               ? ? ?]))))
 
   (it "knows when the game is winner on a full board"
     (should= :winner (game-state (create-game [X X O
@@ -33,6 +33,6 @@
                                              X X O]))))
 
   (it "knows when the game is inplay"
-    (should= :inplay (game-state (create-game [X X EMPTY
-                                               O O EMPTY
-                                               EMPTY EMPTY EMPTY])))))
+    (should= :inplay (game-state (create-game [X X ?
+                                               O O ?
+                                               ? ? ?])))))

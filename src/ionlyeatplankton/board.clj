@@ -6,10 +6,10 @@
 (deftype Mark [mark])
 (def X (Mark. :X))
 (def O (Mark. :O))
-(def EMPTY :EMPTY)
+(def ? :EMPTY)
 
 (defn create-board [n]
-  (vec (repeat (* n n) EMPTY)))
+  (vec (repeat (* n n) ?)))
 
 (defn mark [board position mark]
   (assoc board position mark))
@@ -60,4 +60,4 @@
   (= (type cell) Mark))
 
 (defn- isEmpty? [cell]
-  (= cell EMPTY))
+  (= cell ?))

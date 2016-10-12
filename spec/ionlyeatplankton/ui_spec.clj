@@ -45,8 +45,12 @@
 
   (it "shows a X win message"
     (should= "X is the winner!\n"
-             (with-out-str (show-winner (winner [X X X O O EMPTY EMPTY EMPTY EMPTY])))))
+             (with-out-str (show-winner (winner [X X X
+                                                 O O ?
+                                                 ? ? ?])))))
 
   (it "shows a O win message"
     (should= "O is the winner!\n"
-             (with-out-str (show-winner (winner [X X EMPTY O O O X EMPTY EMPTY]))))))
+             (with-out-str (show-winner (winner [X X ?
+                                                 O O O
+                                                 X ? ?]))))))
