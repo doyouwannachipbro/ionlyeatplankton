@@ -43,7 +43,7 @@
 
 (defn- combos [board]
   (let [rows (rows board)]
-    (reduce into [] (vector rows (columns rows) (diagonals rows)))))
+    (reduce into [] [rows (columns rows) (diagonals rows)])))
 
 (defn- rows [board]
   (partition (width board) board))
