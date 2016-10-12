@@ -11,7 +11,7 @@
 (defn create-board [n]
   (vec (repeat (* n n) EMPTY)))
 
-(defn mark [position mark board]
+(defn mark [board position mark]
   (assoc board position mark))
 
 (defn size [board]

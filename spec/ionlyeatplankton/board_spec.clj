@@ -10,11 +10,11 @@
     (should= 3 (width (create-board 3))))
 
   (it "can be marked with X"
-    (let [marked-board (to-vector (mark 3 X (create-board 3)))]
+    (let [marked-board (to-vector (mark (create-board 3) 3 X))]
       (should= :X (.mark (get marked-board 3)))))
 
   (it "can be marked with O"
-    (let [marked-board (to-vector (mark 3 O (create-board 3)))]
+    (let [marked-board (to-vector (mark (create-board 3) 3 O))]
       (should= :O (.mark (get marked-board 3)))))
 
   (it "knows when it is full"
