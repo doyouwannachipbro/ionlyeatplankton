@@ -54,3 +54,7 @@
              (with-out-str (show-winner (winner [X X ?
                                                  O O O
                                                  X ? ?]))))))
+
+  (it "sends a clear screen code"
+    (should= "\033[H\033[2J"
+             (with-out-str (clear-screen))))

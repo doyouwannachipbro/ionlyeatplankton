@@ -30,6 +30,9 @@
 (defn show-winner [mark]
   (println (str (name (.mark mark)) " is the winner!")))
 
+(defn clear-screen []
+  (println "\033[H\033[2J"))
+
 (defn get-number [max]
    (let [input (clojure.string/trim (read-line))]
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
