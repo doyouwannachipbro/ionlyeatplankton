@@ -20,6 +20,9 @@
   (it "knows when it is full"
     (should (full? [X O X O X O X O X])))
 
+  (it "knows when it is not full"
+    (should-not (full? [X O X ? X O X O X])))
+
   (it "knows the available moves"
     (should= [1 2 3 4 5 6 7] (available-moves [X ? ?
                                                ? ? ?
