@@ -2,7 +2,7 @@
   (:use [ionlyeatplankton.board :as board]
         [clojure.string :only (join)]))
 
-(declare show-row create-rows show-cell ansi-styles ansi colorize)
+(declare show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
 
 (defn show-board [board]
   (doseq [row (interpose "---|---|---" (create-rows board))]
@@ -34,15 +34,18 @@
     (str " " (join " | " (map show-cell row)) " "))
 
 (defn- create-rows [board]
-  (map show-row (into [] (partition (width board) board))))
+  (map show-row (into [] (partition (width board) (add-indexes board)))))
+
+(defn- add-indexes [board]
+  (map-indexed (fn [index value] (vector (inc index) value)) board))
 
 (defn- show-cell [cell]
   (cond
-    (= ionlyeatplankton.board.Mark (type cell))
+    (= ionlyeatplankton.board.Mark (type (last cell)))
       (do (if (= :X (.mark cell))
         (colorize "X" :red)
         (colorize "O" :blue)))
-    :else (colorize cell :white)))
+    :else (colorize (first cell) :white)))
 
 (defn- colorize [text color]
   (str (ansi color) text (ansi :reset)))
