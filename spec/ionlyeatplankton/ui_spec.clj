@@ -6,14 +6,14 @@
 (describe "UI"
 
   (it "produces a welcome message"
-    (should= "Welcome to TicTacToe\n" (with-out-str (show-welcome))))
+    (should= "Welcome to TicTacToe\n\n" (with-out-str (show-welcome))))
 
   (it "shows the game choice menu"
     (should= (str "Please choose the game type:\n"
                   "1) Human vs Human\n"
                   "2) Human vs Computer\n"
                   "3) Computer vs Human\n"
-                  "4) Computer vs Computer\n")
+                  "4) Computer vs Computer\n\n")
              (with-out-str (show-game-choice-menu))))
 
   (it "shows an invalid selection message"
@@ -36,7 +36,7 @@
              (with-out-str (with-in-str "asd;lfkj p29308t5  kljwbdfa7r5  2khj" (get-number 2)))))
 
   (it "prompts the user to make a move"
-    (should= "Mark the board by selecting a number from 1-9\n"
+    (should= "Mark the board by selecting a number from 1-9\n\n"
              (with-out-str (show-move-instructions))))
 
   (it "shows a draw message"

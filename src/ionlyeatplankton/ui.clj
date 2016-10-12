@@ -9,20 +9,20 @@
     (println row)))
 
 (defn show-welcome []
-  (println "Welcome to TicTacToe"))
+  (println "Welcome to TicTacToe\n"))
 
 (defn show-game-choice-menu []
   (println (str "Please choose the game type:\n"
                 "1) Human vs Human\n"
                 "2) Human vs Computer\n"
                 "3) Computer vs Human\n"
-                "4) Computer vs Computer")))
+                "4) Computer vs Computer\n")))
 
 (defn show-invalid-selection []
   (println "Please make a selection from the options presented"))
 
 (defn show-move-instructions []
-  (println "Mark the board by selecting a number from 1-9"))
+  (println "Mark the board by selecting a number from 1-9\n"))
 
 (defn show-draw []
   (println "It's a draw!"))
@@ -35,6 +35,8 @@
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
        (show-invalid-selection)
        (read-string input))))
+
+;;; private methods
 
 (defn- show-row [row]
     (str " " (join " | " (map show-cell row)) " "))
