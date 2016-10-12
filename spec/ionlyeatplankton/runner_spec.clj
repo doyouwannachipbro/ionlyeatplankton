@@ -4,5 +4,5 @@
 
 (describe "Runner"
 
-  (it "can start a game"
-    (should-contain "Welcome to TicTacToe" (with-out-str (start)))))
+  (it "can play through a game"
+    (should-contain "X is the winner!" (with-in-str "1\n4\n2\n5\n3\n" (with-out-str (start))))))
