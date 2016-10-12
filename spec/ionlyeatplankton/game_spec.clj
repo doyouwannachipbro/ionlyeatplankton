@@ -7,6 +7,13 @@
   (:import (ionlyeatplankton.game Game)))
 
 (describe "Game"
+
+  (with-stubs)
+
+  (around [it]
+    (with-redefs [ui/get-number (stub :get-number {:return 1})]
+      (it)))
+
   (it "knows the current player is X for a new game"
     (should= X (current-player (Game. (create-board 3) [human human]))))
 
@@ -36,6 +43,10 @@
                                        X X O] [human human]))))
 
   (it "knows when the game is inplay"
-    (should= :inplay (game-state (create-game [X X ?
-                                               O O ?
-                                               ? ? ?])))))
+    (should= :inplay (game-state (Game. [X X ?
+                                         O O ?
+                                         ? ? ?] [human human]))))
+
+  (it "will prompt for a human move"
+    (get-move (Game. (create-board 3) [human human]))
+    (should-have-invoked :get-number {:times 1})))

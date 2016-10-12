@@ -21,7 +21,7 @@
              (with-out-str (show-invalid-selection))))
 
   (it "takes a number from a player"
-    (should= "1" (with-in-str "1" (get-number 2))))
+    (should= 1 (with-in-str "1" (get-number 2))))
 
   (it "rejects a letter from a player"
     (should= "Please make a selection from the options presented\n"

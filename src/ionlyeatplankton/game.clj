@@ -1,10 +1,17 @@
 (ns ionlyeatplankton.game
-  (:use [ionlyeatplankton.board]))
+  (:use [ionlyeatplankton.board]
+        [ionlyeatplankton.ui]
+        [ionlyeatplankton.players]))
 
 (declare count-marks)
 
 (defrecord Game [board players])
 
+(defn get-move [game]
+  (cond
+    (= :human (first (.players game))) (dec (get-number 9))
+    (= :computer (first (.players game))) 1
+    :else 5))
 
 (defn current-player [game]
   (let [num-x (count-marks X (.board game)) num-o (count-marks O (.board game))]

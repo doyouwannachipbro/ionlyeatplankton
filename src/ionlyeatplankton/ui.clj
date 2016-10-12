@@ -34,7 +34,7 @@
    (let [input (clojure.string/trim (read-line))]
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
        (show-invalid-selection)
-       input)))
+       (read-string input))))
 
 (defn- show-row [row]
     (str " " (join " | " (map show-cell row)) " "))
