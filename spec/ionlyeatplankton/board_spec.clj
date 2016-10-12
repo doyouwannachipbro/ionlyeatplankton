@@ -3,6 +3,10 @@
         [ionlyeatplankton.board]))
 
 (describe "Board"
+
+  (defn make-board [board]
+    board)
+
   (it "knows its size"
     (should= 9 (size (create-board 3))))
 
@@ -18,60 +22,60 @@
       (should= :O (.mark (get marked-board 3)))))
 
   (it "knows when it is full"
-    (should (full? [X O X O X O X O X])))
+    (should (full? (make-board [X O X O X O X O X]))))
 
   (it "knows when it is not full"
-    (should-not (full? [X O X ? X O X O X])))
+    (should-not (full? (make-board [X O X ? X O X O X]))))
 
   (it "knows the available moves"
-    (should= [1 2 3 4 5 6 7] (available-moves [X ? ?
-                                               ? ? ?
-                                               ? ? O])))
+    (should= [1 2 3 4 5 6 7] (available-moves (make-board [X ? ?
+                                                           ? ? ?
+                                                           ? ? O]))))
 
   (it "returns the winner if there is one on a row"
-    (should= X (winner [X X X
-                        ? ? ?
-                        ? ? ?])))
+    (should= X (winner (make-board [X X X
+                                    ? ? ?
+                                    ? ? ?]))))
 
   (it "returns the winner if there is one the second row"
-    (should= O (winner [? ? ?
-                        O O O
-                        ? ? ?])))
+    (should= O (winner (make-board [? ? ?
+                                    O O O
+                                    ? ? ?]))))
 
   (it "returns the winner if there is one on the third row"
-    (should= O (winner [? ? ?
-                        ? ? ?
-                        O O O])))
+    (should= O (winner (make-board [? ? ?
+                                    ? ? ?
+                                    O O O]))))
 
   (it "returns the winner if there is one on a column"
-    (should= X (winner [X ? ?
-                        X ? ?
-                        X ? ?])))
+    (should= X (winner (make-board [X ? ?
+                                    X ? ?
+                                    X ? ?]))))
 
   (it "returns the winner if there is one the second column"
-    (should= O (winner [? O ?
-                        ? O ?
-                        ? O ?])))
+    (should= O (winner (make-board [? O ?
+                                    ? O ?
+                                    ? O ?]))))
 
   (it "returns the winner if there is one on the third column"
-    (should= X (winner [? ? X
-                        ? ? X
-                        ? ? X])))
+    (should= X (winner (make-board [? ? X
+                                    ? ? X
+                                    ? ? X]))))
 
   (it "returns the winner if there is one on the left diagonal"
-    (should= X (winner [X ? ?
-                        ? X ?
-                        ? ? X])))
+    (should= X (winner (make-board [X ? ?
+                                    ? X ?
+                                    ? ? X]))))
 
   (it "returns the winner if there is one on the right diagonal"
-    (should= O (winner [? ? O
-                        ? O ?
-                        O ? ?])))
+    (should= O (winner (make-board [? ? O
+                                    ? O ?
+                                    O ? ?]))))
 
   (it "returns :no-winner if no winner when in play"
-    (should= :no-winner (winner [X X ?
-                                 O O ?
-                                 ? ? ?])))
+    (should= :no-winner (winner (make-board [X X ?
+                                             O O ?
+                                             ? ? ?]))))
 
   (it "returns :no-winner if no winner in new game"
     (should= :no-winner (winner (create-board 4)))))

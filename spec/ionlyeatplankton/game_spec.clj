@@ -8,6 +8,9 @@
 
 (describe "Game"
 
+  (defn make-board [board]
+    board)
+
   (with-stubs)
 
   (around [it]
@@ -18,39 +21,39 @@
     (should= X (current-player (Game. (create-board 3) [human human]))))
 
   (it "knows the current player is X during gameplay"
-    (should= X (current-player (Game. [X O O
+    (should= X (current-player (Game. (make-board [X O O
                                        ? ? X
-                                       X O ?] [human human]))))
+                                       X O ?]) [human human]))))
 
   (it "knows the current player is O during gameplay"
-    (should= O (current-player (Game. [X O ?
+    (should= O (current-player (Game. (make-board [X O ?
                                        ? ? X
-                                       X O ?] [human human]))))
+                                       X O ?]) [human human]))))
 
   (it "knows when X is the winner"
-    (should= :winner (game-state (Game. [X X X
+    (should= :winner (game-state (Game. (make-board [X X X
                                          O O ?
-                                         ? ? ?] [human human]))))
+                                         ? ? ?]) [human human]))))
 
   (it "knows when X is the winner on a full board"
-    (should= :winner (game-state (Game. [X X O
+    (should= :winner (game-state (Game. (make-board [X X O
                                          O X O
-                                         X O X] [human human]))))
+                                         X O X]) [human human]))))
 
   (it "knows when O is the winner"
-    (should= :winner (game-state (Game. [X X ?
+    (should= :winner (game-state (Game. (make-board [X X ?
                                          O O O
-                                         ? X ?] [human human]))))
+                                         ? X ?]) [human human]))))
 
   (it "knows when the game is draw"
-    (should= :draw (game-state (Game. [X X O
+    (should= :draw (game-state (Game. (make-board [X X O
                                        O O X
-                                       X X O] [human human]))))
+                                       X X O]) [human human]))))
 
   (it "knows when the game is inplay"
-    (should= :inplay (game-state (Game. [X X ?
+    (should= :inplay (game-state (Game. (make-board [X X ?
                                          O O ?
-                                         ? ? ?] [human human]))))
+                                         ? ? ?]) [human human]))))
 
   (it "will prompt for a human move"
     (get-move (Game. (create-board 3) [human human]))
