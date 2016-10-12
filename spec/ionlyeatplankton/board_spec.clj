@@ -65,7 +65,10 @@
                         ? O ?
                         O ? ?])))
 
-  (it "returns :no-winner if no winner on any row"
+  (it "returns :no-winner if no winner when in play"
     (should= :no-winner (winner [X X ?
                                  O O ?
-                                 ? ? ?]))))
+                                 ? ? ?])))
+
+  (it "returns :no-winner if no winner in new game"
+    (should= :no-winner (winner (create-board 4)))))
