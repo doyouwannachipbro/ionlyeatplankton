@@ -3,16 +3,16 @@
 
 (declare count-marks)
 
-(defn create-game [board]
-  board)
+(defrecord Game [board players])
+
 
 (defn current-player [game]
-  (let [num-x (count-marks X game) num-o (count-marks O game)]
+  (let [num-x (count-marks X (.board game)) num-o (count-marks O (.board game))]
     (if (< num-o num-x)
-    O
-    X)))
+      O
+      X)))
 
-(defmulti game-state (fn [game] [(full? game) (winner game)]))
+(defmulti game-state (fn [game] [(full? (.board game)) (winner (.board game))]))
 
 (defmethod game-state [true (or X O)] [game] :winner)
 (defmethod game-state [false (or X O)] [game] :winner)
@@ -21,4 +21,3 @@
 
 (defn- count-marks [mark game]
   (count (filter (partial = mark) game)))
-
