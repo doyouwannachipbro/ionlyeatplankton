@@ -1,7 +1,7 @@
 (ns ionlyeatplankton.board
   (:use [clojure.math.numeric-tower :only (sqrt) :as math]))
 
-(declare isMark? isEmpty? get-winning-mark combos rows columns diagonals winning-combination?)
+(declare isMark? isEmpty? get-winning-mark combos rows columns diagonals get-diagonal winning-combination?)
 
 (deftype Mark [mark])
 (def X (Mark. :X))
@@ -53,8 +53,11 @@
 
 (defn- diagonals [rows]
   (vector
-    (map-indexed (fn [index value] (get (vec value) index)) rows)
-    (map-indexed (fn [index value] (get (vec (reverse value)) index)) rows)))
+    (get-diagonal rows)
+    (get-diagonal (map reverse rows))))
+
+(defn- get-diagonal [rows]
+    (map-indexed (fn [index row] (get (vec row) index)) rows))
 
 (defn- isMark? [cell]
   (= (type cell) Mark))
