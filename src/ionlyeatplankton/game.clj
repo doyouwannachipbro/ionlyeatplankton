@@ -21,8 +21,10 @@
 
 (defmulti game-state (fn [game] [(full? (.board game)) (winner (.board game))]))
 
-(defmethod game-state [true (or X O)] [game] :winner)
-(defmethod game-state [false (or X O)] [game] :winner)
+(defmethod game-state [true  X] [game] :winner)
+(defmethod game-state [true  O] [game] :winner)
+(defmethod game-state [false X] [game] :winner)
+(defmethod game-state [false O] [game] :winner)
 (defmethod game-state [true :no-winner] [game] :draw)
 (defmethod game-state [false :no-winner] [game] :inplay)
 
