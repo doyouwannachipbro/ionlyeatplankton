@@ -10,7 +10,7 @@
 
 (defn get-move [game]
   (cond
-    (= :human (first (.players game))) (dec (get-number 9))
+    (= :human (first (.players game))) (dec (get-number (count (.board game))))
     (= :computer (first (.players game))) (get-best-move (.board game))
     :else 5))
 
