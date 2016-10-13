@@ -53,8 +53,12 @@
     (should= "O is the winner!\n"
              (with-out-str (show-winner (winner [X X ?
                                                  O O O
-                                                 X ? ?]))))))
+                                                 X ? ?])))))
 
   (it "sends a clear screen code"
-    (should= "\033[H\033[2J"
+    (should= "\033[H\033[2J\n"
              (with-out-str (clear-screen))))
+
+  (it "shows a restart query message"
+    (should= "Press 'y' to play again, or any other key to exit.\n"
+             (with-out-str (show-restart)))))
