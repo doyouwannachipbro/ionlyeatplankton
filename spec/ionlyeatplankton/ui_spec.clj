@@ -61,7 +61,11 @@
 
   (it "shows a restart query message"
     (should= "Press 'y' to play again, or any other key to exit.\n"
-             (with-out-str (show-restart))))
+             (with-out-str (show-restart-query))))
+
+  (it "shows a restart confirmation message"
+    (should= "Game is restarting...\n"
+             (with-out-str (show-restart-confirm))))
 
   (it "takes a letter from a player"
     (should= "y" (with-in-str "y" (get-line)))))

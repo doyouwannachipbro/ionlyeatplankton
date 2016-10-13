@@ -30,8 +30,11 @@
 (defn show-winner [mark]
   (println (str (name (.mark mark)) " is the winner!")))
 
-(defn show-restart []
+(defn show-restart-query []
   (println "Press 'y' to play again, or any other key to exit."))
+
+(defn show-restart-confirm []
+  (println "Game is restarting..."))
 
 (defn clear-screen []
   (println "\033[H\033[2J"))
