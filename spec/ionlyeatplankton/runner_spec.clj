@@ -1,6 +1,6 @@
 (ns ionlyeatplankton.runner-spec
-  (:use [speclj.core]
-        [ionlyeatplankton.runner]))
+  (:use [speclj.core])
+  (:require [ionlyeatplankton.runner :refer :all]))
 
 (describe "Runner"
 

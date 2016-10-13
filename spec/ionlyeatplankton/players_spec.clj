@@ -1,6 +1,6 @@
 (ns ionlyeatplankton.players-spec
-  (:use [speclj.core]
-        [ionlyeatplankton.players]))
+  (:use [speclj.core])
+  (:require [ionlyeatplankton.players :refer :all]))
 
 (describe "Players"
 

@@ -1,13 +1,13 @@
 (ns ionlyeatplankton.computer
-  (:use [ionlyeatplankton.board]))
+  (:require [ionlyeatplankton.board :refer :all]))
 
 (declare best-move choose-random-corner score-move opponent opponent-score score)
 
 (defn get-best-move [board mark]
   (Thread/sleep 500)
   (if (= (count (available-moves board)) (size board))
-      (choose-random-corner board)
-      (last (best-move board mark))))
+    (choose-random-corner board)
+    (last (best-move board mark))))
 
 (defn- best-move [board player]
   (let [scoredMoves (map (fn [move] (score-move board player move)) (available-moves board))]
@@ -38,4 +38,4 @@
 
 (defn- choose-random-corner [board]
   (let [width (width board) size (size board)]
-  (first (shuffle [0 (- width 1) (- size width) (- size 1)]))))
+    (first (shuffle [0 (- width 1) (- size width) (- size 1)]))))

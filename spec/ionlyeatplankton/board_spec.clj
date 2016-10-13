@@ -1,6 +1,6 @@
 (ns ionlyeatplankton.board-spec
-  (:use [speclj.core]
-        [ionlyeatplankton.board]))
+  (:use [speclj.core])
+  (:require [ionlyeatplankton.board :refer :all]))
 
 (describe "Board"
 

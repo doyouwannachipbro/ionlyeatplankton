@@ -1,8 +1,8 @@
 (ns ionlyeatplankton.game
-  (:use [ionlyeatplankton.board]
-        [ionlyeatplankton.ui]
-        [ionlyeatplankton.computer]
-        [ionlyeatplankton.players]))
+  (:require [ionlyeatplankton.board :refer :all]
+            [ionlyeatplankton.ui :refer :all]
+            [ionlyeatplankton.computer :refer :all]
+            [ionlyeatplankton.players :refer :all]))
 
 (declare count-marks current-player)
 

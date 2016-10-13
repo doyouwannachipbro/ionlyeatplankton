@@ -1,8 +1,8 @@
 (ns ionlyeatplankton.runner
-  (:use [ionlyeatplankton.ui :as ui]
-        [ionlyeatplankton.players]
-        [ionlyeatplankton.game :as game]
-        [ionlyeatplankton.board :as board])
+  (:require [ionlyeatplankton.ui :refer :all :as ui]
+            [ionlyeatplankton.players :refer :all]
+            [ionlyeatplankton.game :refer :all :as game]
+            [ionlyeatplankton.board :refer :all :as board])
   (:import (ionlyeatplankton.game Game)))
 
 (declare setup-game play-game make-move end-game restart)
@@ -13,8 +13,8 @@
 
 (defn- play-game [game]
   (if (= :inplay (state (.board game)))
-     (recur (make-move game))
-     (end-game (.board game))))
+    (recur (make-move game))
+    (end-game (.board game))))
 
 (defn- setup-game []
   (ui/show-welcome)
@@ -24,7 +24,7 @@
 (defn- make-move [game]
   (ui/show-board (.board game))
   (Game. (board/mark (.board game) (get-move game) (current-player game))
-                       (reverse (.players game))))
+         (reverse (.players game))))
 
 (defn- end-game [board]
   (show-board board)

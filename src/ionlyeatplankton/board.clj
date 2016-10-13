@@ -1,5 +1,5 @@
 (ns ionlyeatplankton.board
-  (:use [clojure.math.numeric-tower :only (sqrt) :as math]))
+  (:require [clojure.math.numeric-tower :only (sqrt) :as math]))
 
 (declare isMark? isEmpty? get-winning-mark combos rows columns diagonals get-diagonal winning-combination?)
 
@@ -64,7 +64,7 @@
     (get-diagonal (map reverse rows))))
 
 (defn- get-diagonal [rows]
-    (map-indexed (fn [index row] (get (vec row) index)) rows))
+  (map-indexed (fn [index row] (get (vec row) index)) rows))
 
 (defn- isMark? [cell]
   (= (type cell) Mark))

@@ -1,9 +1,9 @@
 (ns ionlyeatplankton.game-spec
-  (:use [speclj.core]
-        [ionlyeatplankton.board]
-        [ionlyeatplankton.players]
-        [ionlyeatplankton.ui :as ui]
-        [ionlyeatplankton.game])
+  (:use [speclj.core])
+  (:require [ionlyeatplankton.board :refer :all]
+            [ionlyeatplankton.players :refer :all]
+            [ionlyeatplankton.ui :refer :all]
+            [ionlyeatplankton.game :refer :all])
   (:import (ionlyeatplankton.game Game)))
 
 (describe "Game"
@@ -14,7 +14,7 @@
   (with-stubs)
 
   (around [it]
-    (with-redefs [ui/get-number (stub :get-number {:return 1})]
+    (with-redefs [get-number (stub :get-number {:return 1})]
       (it)))
 
   (it "knows the current player is X for a new game"

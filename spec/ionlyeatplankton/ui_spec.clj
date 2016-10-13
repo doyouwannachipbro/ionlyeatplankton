@@ -1,7 +1,7 @@
 (ns ionlyeatplankton.ui-spec
-  (:use [speclj.core]
-        [ionlyeatplankton.board]
-        [ionlyeatplankton.ui]))
+  (:use [speclj.core])
+  (:require [ionlyeatplankton.board :refer :all]
+            [ionlyeatplankton.ui :refer :all]))
 
 (describe "UI"
 

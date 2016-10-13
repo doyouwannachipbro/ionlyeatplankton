@@ -1,7 +1,7 @@
 (ns ionlyeatplankton.computer-spec
-  (:use [speclj.core]
-        [ionlyeatplankton.computer]
-        [ionlyeatplankton.board]))
+  (:use [speclj.core])
+  (:require [ionlyeatplankton.computer :refer :all]
+            [ionlyeatplankton.board :refer :all]))
 
 (describe "Computer"
 

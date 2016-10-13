@@ -1,6 +1,6 @@
 (ns ionlyeatplankton.core
   (:gen-class)
-  (:use [ionlyeatplankton.runner :as runner]))
+  (:require [ionlyeatplankton.runner :refer :all :as runner]))
 
 (defn -main [& args]
   (runner/start))

@@ -1,6 +1,6 @@
 (ns ionlyeatplankton.ui
-  (:use [ionlyeatplankton.board :as board]
-        [clojure.string :only (join)]))
+  (:require [ionlyeatplankton.board :refer :all :as board])
+  (:use [clojure.string :only (join)]))
 
 (declare clear-screen show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
 
@@ -44,16 +44,16 @@
   (clojure.string/trim (read-line)))
 
 (defn get-number [max]
-   (let [input (clojure.string/trim (read-line))]
-     (if (not (contains? (set (map str (range 1 (inc max)))) input))
-       (do (show-invalid-selection)
-           (get-number max))
-       (read-string input))))
+  (let [input (clojure.string/trim (read-line))]
+    (if (not (contains? (set (map str (range 1 (inc max)))) input))
+      (do (show-invalid-selection)
+          (get-number max))
+      (read-string input))))
 
 ;;; private methods
 
 (defn- show-row [row]
-    (str " " (join " | " (map show-cell row)) " "))
+  (str " " (join " | " (map show-cell row)) " "))
 
 (defn- create-rows [board]
   (map show-row (into [] (partition (width board) (add-indexes board)))))
@@ -64,9 +64,9 @@
 (defn- show-cell [cell]
   (cond
     (= ionlyeatplankton.board.Mark (type (last cell)))
-      (do (if (= :X (.mark (last cell)))
-        (colorize "X" :red)
-        (colorize "O" :blue)))
+    (do (if (= :X (.mark (last cell)))
+          (colorize "X" :red)
+          (colorize "O" :blue)))
     :else (colorize (first cell) :white)))
 
 (defn- colorize [text color]
