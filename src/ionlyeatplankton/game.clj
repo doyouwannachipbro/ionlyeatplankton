@@ -1,6 +1,7 @@
 (ns ionlyeatplankton.game
   (:use [ionlyeatplankton.board]
         [ionlyeatplankton.ui]
+        [ionlyeatplankton.computer]
         [ionlyeatplankton.players]))
 
 (declare count-marks)
@@ -10,7 +11,7 @@
 (defn get-move [game]
   (cond
     (= :human (first (.players game))) (dec (get-number 9))
-    (= :computer (first (.players game))) 1
+    (= :computer (first (.players game))) (get-best-move (.board game))
     :else 5))
 
 (defn current-player [game]

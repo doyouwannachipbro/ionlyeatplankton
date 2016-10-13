@@ -8,8 +8,7 @@
 (declare setup-game play-game make-move end-game restart)
 
 (defn start []
-  (setup-game)
-  (let [new-game (Game. (create-board 3) [human human])]
+  (let [new-game (Game. (create-board 3) (choose-game (setup-game)))]
     (play-game new-game)))
 
 (defn- play-game [game]
