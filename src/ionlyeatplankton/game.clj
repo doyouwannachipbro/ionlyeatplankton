@@ -20,12 +20,5 @@
       O
       X)))
 
-(defn game-state [game]
-  (let [[full winner] [(full? (.board game)) (winner (.board game))]]
-    (cond
-      (not= winner :no-winner) :winner
-      (= full true) :draw
-      :else :inplay)))
-
 (defn- count-marks [mark game]
   (count (filter (partial = mark) game)))

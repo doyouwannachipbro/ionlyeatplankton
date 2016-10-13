@@ -78,4 +78,29 @@
                                              ? ? ?]))))
 
   (it "returns :no-winner if no winner in new game"
-    (should= :no-winner (winner (create-board 4)))))
+    (should= :no-winner (winner (create-board 4))))
+
+  (it "knows when X is the winner"
+    (should= :winner (state (make-board [X X X
+                                         O O ?
+                                         ? ? ?]))))
+
+  (it "knows when X is the winner on a full board"
+    (should= :winner (state (make-board [X X O
+                                         O X O
+                                         X O X]))))
+
+  (it "knows when O is the winner"
+    (should= :winner (state (make-board [X X ?
+                                         O O O
+                                         ? X ?]))))
+
+  (it "knows when the game is draw"
+    (should= :draw (state (make-board [X X O
+                                       O O X
+                                       X X O]))))
+
+  (it "knows when the game is inplay"
+    (should= :inplay (state (make-board [X X ?
+                                         O O ?
+                                         ? ? ?])))))
