@@ -4,6 +4,7 @@
 (declare best-move choose-random-corner score-move opponent opponent-score score)
 
 (defn get-best-move [board mark]
+  (Thread/sleep 500)
   (if (= (count (available-moves board)) (size board))
       (choose-random-corner board)
       (last (best-move board mark))))
