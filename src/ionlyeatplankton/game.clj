@@ -4,14 +4,14 @@
         [ionlyeatplankton.computer]
         [ionlyeatplankton.players]))
 
-(declare count-marks)
+(declare count-marks current-player)
 
 (defrecord Game [board players])
 
 (defn get-move [game]
   (cond
     (= :human (first (.players game))) (dec (get-number (count (.board game))))
-    (= :computer (first (.players game))) (get-best-move (.board game))
+    (= :computer (first (.players game))) (get-best-move (.board game) (current-player game))
     :else 5))
 
 (defn current-player [game]
