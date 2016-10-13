@@ -61,4 +61,7 @@
 
   (it "shows a restart query message"
     (should= "Press 'y' to play again, or any other key to exit.\n"
-             (with-out-str (show-restart)))))
+             (with-out-str (show-restart))))
+
+  (it "takes a letter from a player"
+    (should= "y" (with-in-str "y" (get-line)))))

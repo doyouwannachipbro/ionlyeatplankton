@@ -36,6 +36,9 @@
 (defn clear-screen []
   (println "\033[H\033[2J"))
 
+(defn get-line []
+  (clojure.string/trim (read-line)))
+
 (defn get-number [max]
    (let [input (clojure.string/trim (read-line))]
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
