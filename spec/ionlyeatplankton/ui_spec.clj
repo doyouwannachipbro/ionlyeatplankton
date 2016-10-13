@@ -25,15 +25,15 @@
 
   (it "rejects a letter from a player"
     (should= "Please make a selection from the options presented\n"
-             (with-out-str (with-in-str "a" (get-number 2)))))
+             (with-out-str (with-in-str "a\n1" (get-number 2)))))
 
   (it "rejects a long from a player"
     (should= "Please make a selection from the options presented\n"
-             (with-out-str (with-in-str "12039857120349851203945712039481239847" (get-number 2)))))
+             (with-out-str (with-in-str "12039857120349851203945712039481239847\n1" (get-number 2)))))
 
   (it "rejects a nonsense sentence from a player"
     (should= "Please make a selection from the options presented\n"
-             (with-out-str (with-in-str "asd;lfkj p29308t5  kljwbdfa7r5  2khj" (get-number 2)))))
+             (with-out-str (with-in-str "asd;lfkj p29308t5  kljwbdfa7r5  2khj\n1" (get-number 2)))))
 
   (it "prompts the user to make a move"
     (should= "Mark the board by selecting a number from 1-9\n\n"

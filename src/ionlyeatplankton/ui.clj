@@ -46,7 +46,8 @@
 (defn get-number [max]
    (let [input (clojure.string/trim (read-line))]
      (if (not (contains? (set (map str (range 1 (inc max)))) input))
-       (show-invalid-selection)
+       (do (show-invalid-selection)
+           (get-number max))
        (read-string input))))
 
 ;;; private methods
