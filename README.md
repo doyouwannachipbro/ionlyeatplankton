@@ -17,7 +17,7 @@ lein run -m ionlyeatplankton.core
 Or
 
 ```shell
-java -jar target/ionlyeatplankton-0.1.0-SNAPSHOT.jar
+java -jar target/ionlyeatplankton-0.1.0-SNAPSHOT-standalone.jar
 ```
 
 ### Test

@@ -35,6 +35,13 @@
       winning-mark
       :no-winner)))
 
+(defn state [board]
+  (let [[full win-state] [(full? board) (winner board)]]
+    (cond
+      (not= win-state :no-winner) :winner
+      (= full true) :draw
+      :else :inplay)))
+
 (defn- get-winning-mark [board]
   (first (distinct (flatten (filter winning-combination? (combos board))))))
 

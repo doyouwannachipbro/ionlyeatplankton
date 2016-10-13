@@ -8,14 +8,13 @@
 (declare setup-game play-game make-move end-game restart)
 
 (defn start []
-  (setup-game)
-  (let [new-game (Game. (create-board 3) [human human])]
+  (let [new-game (Game. (create-board 3) (choose-game (setup-game)))]
     (play-game new-game)))
 
 (defn- play-game [game]
-  (if (= :inplay (game-state game))
+  (if (= :inplay (state (.board game)))
      (recur (make-move game))
-     (end-game game)))
+     (end-game (.board game))))
 
 (defn- setup-game []
   (ui/show-welcome)
@@ -27,10 +26,10 @@
   (Game. (board/mark (.board game) (get-move game) (current-player game))
                        (reverse (.players game))))
 
-(defn- end-game [game]
-  (show-board (.board game))
-  (if (= :winner (game-state game))
-    (ui/show-winner (winner (.board game)))
+(defn- end-game [board]
+  (show-board board)
+  (if (= :winner (state board))
+    (ui/show-winner (winner board))
     (ui/show-draw))
   (restart))
 

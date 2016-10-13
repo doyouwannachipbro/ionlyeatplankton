@@ -1,16 +1,17 @@
 (ns ionlyeatplankton.game
   (:use [ionlyeatplankton.board]
         [ionlyeatplankton.ui]
+        [ionlyeatplankton.computer]
         [ionlyeatplankton.players]))
 
-(declare count-marks)
+(declare count-marks current-player)
 
 (defrecord Game [board players])
 
 (defn get-move [game]
   (cond
-    (= :human (first (.players game))) (dec (get-number 9))
-    (= :computer (first (.players game))) 1
+    (= :human (first (.players game))) (dec (get-number (count (.board game))))
+    (= :computer (first (.players game))) (get-best-move (.board game) (current-player game))
     :else 5))
 
 (defn current-player [game]
@@ -18,13 +19,6 @@
     (if (< num-o num-x)
       O
       X)))
-
-(defn game-state [game]
-  (let [[full winner] [(full? (.board game)) (winner (.board game))]]
-    (cond
-      (not= winner :no-winner) :winner
-      (= full true) :draw
-      :else :inplay)))
 
 (defn- count-marks [mark game]
   (count (filter (partial = mark) game)))
