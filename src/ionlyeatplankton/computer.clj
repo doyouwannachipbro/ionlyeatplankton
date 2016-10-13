@@ -4,17 +4,16 @@
 (declare best-move choose-random-corner score-move opponent opponent-score score)
 
 (defn get-best-move [board mark]
-  (Thread/sleep 500)
   (if (= (count (available-moves board)) (size board))
     (choose-random-corner board)
     (last (best-move board mark))))
 
+
 (defn- best-move [board player]
   (let [scoredMoves (map (fn [move] (score-move board player move)) (available-moves board))]
-    (reduce (fn [[score move] [best-score best-move]]
-              (if (>= score best-score)
-                [score move]
-                [best-score best-move])) [-100 -1] scoredMoves)))
+    (apply max-key first (reverse scoredMoves))))
+
+(def best-move (memoize best-move))
 
 (defn- score-move [board player move]
   (let [next-board (mark board move player)
@@ -38,4 +37,4 @@
 
 (defn- choose-random-corner [board]
   (let [width (width board) size (size board)]
-    (first (shuffle [0 (- width 1) (- size width) (- size 1)]))))
+    (first (shuffle [0 (dec width) (- size width) (dec size)]))))

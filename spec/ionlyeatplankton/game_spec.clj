@@ -4,7 +4,7 @@
             [ionlyeatplankton.players :refer :all]
             [ionlyeatplankton.ui :refer :all]
             [ionlyeatplankton.game :refer :all])
-  (:import (ionlyeatplankton.game Game)))
+  (:import [ionlyeatplankton.game Game]))
 
 (describe "Game"
 

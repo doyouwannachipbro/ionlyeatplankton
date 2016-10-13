@@ -3,7 +3,7 @@
             [ionlyeatplankton.players :refer :all]
             [ionlyeatplankton.game :refer :all :as game]
             [ionlyeatplankton.board :refer :all :as board])
-  (:import (ionlyeatplankton.game Game)))
+  (:import [ionlyeatplankton.game Game]))
 
 (declare setup-game play-game make-move end-game restart)
 
