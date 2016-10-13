@@ -2,9 +2,10 @@
   (:use [ionlyeatplankton.board :as board]
         [clojure.string :only (join)]))
 
-(declare show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
+(declare clear-screen show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
 
 (defn show-board [board]
+  (clear-screen)
   (doseq [row (interpose "---|---|---" (create-rows board))]
     (println row)))
 
