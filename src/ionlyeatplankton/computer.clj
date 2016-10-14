@@ -1,13 +1,18 @@
 (ns ionlyeatplankton.computer
-  (:require [ionlyeatplankton.board :refer :all]))
+  (:require [ionlyeatplankton.board :refer :all]
+            [ionlyeatplankton.ui :as ui :refer [show-computer-thinking]]))
 
-(declare best-move choose-random-corner score-move opponent opponent-score score)
+(declare best-move choose-random-corner score-move opponent opponent-score score add-delay)
 
 (defn get-best-move [board mark]
+  (add-delay 400)
   (if (= (count (available-moves board)) (size board))
     (choose-random-corner board)
     (last (best-move board mark))))
 
+(defn add-delay [time]
+  (show-computer-thinking)
+  (Thread/sleep time))
 
 (defn- best-move [board player]
   (let [scoredMoves (map (fn [move] (score-move board player move)) (available-moves board))]

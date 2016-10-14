@@ -5,6 +5,12 @@
 
 (describe "Computer"
 
+  (with-stubs)
+
+  (around [it]
+    (with-redefs [add-delay (stub :add-delay)] (it)))
+
+
   (it "will choose a corner if the board is empty"
     (should (contains? #{0 2 6 8} (get-best-move (create-board 3) O))))
 

@@ -1,8 +1,14 @@
 (ns ionlyeatplankton.runner-spec
   (:use [speclj.core])
-  (:require [ionlyeatplankton.runner :refer :all]))
+  (:require [ionlyeatplankton.computer :as ai :refer [add-delay]]
+            [ionlyeatplankton.runner :refer :all]))
 
 (describe "Runner"
+
+  (with-stubs)
+
+  (around [it]
+    (with-redefs [ai/add-delay (stub :add-delay)] (it)))
 
   (it "can play through a game with an X winner"
     (should-contain "X is the winner!" (with-in-str "1\n1\n4\n2\n5\n3\nn\n" (with-out-str (start)))))
