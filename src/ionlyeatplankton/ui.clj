@@ -2,7 +2,7 @@
   (:require [ionlyeatplankton.board :refer :all :as board])
   (:use [clojure.string :only (join)]))
 
-(declare clear-screen show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
+(declare clear-screen show-invalid-move valid-move? show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
 
 (defn show-board [board]
   (clear-screen)
@@ -55,9 +55,19 @@
 
 (defn get-move [board _]
   (show-move-instructions (size board))
-  (dec (get-number (count board))))
+  (let [input (dec (get-number (count board)))]
+    (if (not (valid-move? input board))
+        (do (show-invalid-move)
+            (get-move board _))
+        input)))
 
 ;;; private methods
+
+(defn- show-invalid-move []
+  (println "That is not a valid move."))
+
+(defn- valid-move? [move board]
+  (contains? (set (available-moves board)) move))
 
 (defn- show-row [row]
   (str " " (join " | " (map show-cell row)) " "))

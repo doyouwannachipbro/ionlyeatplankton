@@ -74,6 +74,12 @@
   (it "takes a letter from a player"
     (should= "y" (with-in-str "y" (get-line))))
 
+  (it "refects a move that conflicts with a mark cell"
+    (should-contain "That is not a valid move.\n"
+                    (with-out-str (with-in-str "1\n5" (get-move [X X O
+                                                                 ? ? ?
+                                                                 ? ? ?] O)))))
+
   (it "takes a 1 based move from a player and converts to zero based"
     (with-out-str
       (should= 0 (with-in-str "1" (get-move (create-board 3) X))))))
