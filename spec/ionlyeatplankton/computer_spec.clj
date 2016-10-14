@@ -22,9 +22,9 @@
                                ? ? ?] O)))
 
   (it "will win game if option is available"
-    (should= 1 (get-best-move [X ? X
-                               O O ?
-                               ? ? ?] X)))
+    (should= 1 (get-best-move [O ? O
+                               X X ?
+                               ? X ?] O)))
 
   (it "will stop game win if option is available"
     (should= 2 (get-best-move [? X ?
