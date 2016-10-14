@@ -10,6 +10,12 @@
   (it "can play through a game with an O winner"
     (should-contain "O is the winner!" (with-in-str "1\n1\n4\n2\n5\n8\n6\nn\n" (with-out-str (start)))))
 
+  (it "can play a human vs computer game"
+    (should-contain "O is the winner!" (with-in-str "2\n1\n2\n4\nn\n" (with-out-str (start)))))
+
+  (it "can play a computer vs human game"
+    (should-contain "X is the winner!" (with-in-str "3\n1\n2\nn\n" (with-out-str (start)))))
+
   (it "can play through a game to a draw"
     (should-contain "It's a draw!" (with-in-str "1\n1\n4\n2\n5\n6\n3\n9\n8\n7\nn\n" (with-out-str (start)))))
 
