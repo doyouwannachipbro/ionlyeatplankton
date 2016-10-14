@@ -67,6 +67,10 @@
     (should= "Game is restarting...\n"
              (with-out-str (show-restart-confirm))))
 
+  (it "shows a notification that the computer is making a move"
+    (should= "Computer is thinking...\n"
+             (with-out-str (show-computer-thinking))))
+
   (it "takes a letter from a player"
     (should= "y" (with-in-str "y" (get-line))))
 

@@ -40,6 +40,9 @@
 (defn clear-screen []
   (println "\033[H\033[2J"))
 
+(defn show-computer-thinking []
+  (println "Computer is thinking..."))
+
 (defn get-line []
   (clojure.string/trim (read-line)))
 
