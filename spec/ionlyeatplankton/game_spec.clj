@@ -3,6 +3,7 @@
   (:require [ionlyeatplankton.board :refer :all]
             [ionlyeatplankton.players :refer :all]
             [ionlyeatplankton.ui :refer :all]
+            [ionlyeatplankton.computer :refer :all]
             [ionlyeatplankton.game :refer :all])
   (:import [ionlyeatplankton.game Game]))
 
@@ -14,7 +15,8 @@
   (with-stubs)
 
   (around [it]
-    (with-redefs [get-number (stub :get-number {:return 1})]
+    (with-redefs [get-number (stub :get-number {:return 1})
+                  get-best-move (stub :get-best-move {:return 2})]
       (it)))
 
   (it "knows the current player is X for a new game"
@@ -32,4 +34,8 @@
 
   (it "will prompt for a human move"
     (get-move (Game. (create-board 3) [human human]))
-    (should-have-invoked :get-number {:times 1})))
+    (should-have-invoked :get-number {:times 1}))
+
+  (it "will initiate a computer move"
+    (get-move (Game. (create-board 3) [computer human]))
+    (should-have-invoked :get-best-move {:times 1})))
