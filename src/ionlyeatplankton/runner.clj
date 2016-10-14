@@ -23,7 +23,7 @@
 
 (defn- make-move [game]
   (ui/show-board (.board game))
-  (Game. (board/mark (.board game) (get-move game) (current-player game))
+  (Game. (board/mark (.board game) (take-turn game) (current-player game))
          (reverse (.players game))))
 
 (defn- end-game [board]

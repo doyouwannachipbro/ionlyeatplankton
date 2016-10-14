@@ -8,11 +8,8 @@
 
 (defrecord Game [board players])
 
-(defn get-move [game]
-  (cond
-    (= :human (first (.players game))) (dec (get-number (count (.board game))))
-    (= :computer (first (.players game))) (get-best-move (.board game) (current-player game))
-    :else 5))
+(defn take-turn [game]
+  ((first (.players game)) (.board game) (current-player game)))
 
 (defn current-player [game]
   (let [num-x (count-marks X (.board game)) num-o (count-marks O (.board game))]
