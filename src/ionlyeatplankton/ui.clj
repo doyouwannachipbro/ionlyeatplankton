@@ -22,8 +22,8 @@
 (defn show-invalid-selection []
   (println "Please make a selection from the options presented"))
 
-(defn show-move-instructions []
-  (println "Mark the board by selecting a number from 1-9\n"))
+(defn show-move-instructions [board-size]
+  (println (str "Mark the board by selecting a number from 1-" board-size "\n")))
 
 (defn show-draw []
   (println "It's a draw!"))
@@ -49,6 +49,10 @@
       (do (show-invalid-selection)
           (get-number max))
       (read-string input))))
+
+(defn get-move [board _]
+  (show-move-instructions (size board))
+  (dec (get-number (count board))))
 
 ;;; private methods
 

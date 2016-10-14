@@ -37,7 +37,7 @@
 
   (it "prompts the user to make a move"
     (should= "Mark the board by selecting a number from 1-9\n\n"
-             (with-out-str (show-move-instructions))))
+             (with-out-str (show-move-instructions 9))))
 
   (it "shows a draw message"
     (should= "It's a draw!\n"
@@ -68,4 +68,8 @@
              (with-out-str (show-restart-confirm))))
 
   (it "takes a letter from a player"
-    (should= "y" (with-in-str "y" (get-line)))))
+    (should= "y" (with-in-str "y" (get-line))))
+
+  (it "takes a 1 based move from a player and converts to zero based"
+    (with-out-str
+      (should= 0 (with-in-str "1" (get-move (create-board 3) X))))))
