@@ -5,7 +5,7 @@
 (declare best-move choose-random-corner score-move opponent opponent-score score add-delay)
 
 (defn get-best-move [board mark]
-  (add-delay 400)
+  (add-delay 600)
   (if (= (count (available-moves board)) (size board))
     (choose-random-corner board)
     (last (best-move board mark))))
