@@ -1,7 +1,9 @@
-(ns ionlyeatplankton.players)
+(ns ionlyeatplankton.players
+  (:require [ionlyeatplankton.ui :as ui :refer [get-move]]
+            [ionlyeatplankton.computer :as ai :refer [get-best-move]]))
 
-(def human :human)
-(def computer :computer)
+(def human ui/get-move)
+(def computer ai/get-best-move)
 
 (defn choose-game [selection]
   (case selection
