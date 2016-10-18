@@ -6,7 +6,7 @@
 (declare setup-game play-game make-move end-game restart)
 
 (defn start []
-  (play-game (create-game 3 (setup-game))))
+  (play-game (game/create-game 3 (setup-game))))
 
 (defn- setup-game []
   (ui/show-welcome)
@@ -14,18 +14,18 @@
   (ui/get-number 4))
 
 (defn- play-game [game]
-  (if (inplay? game)
+  (if (game/inplay? game)
     (recur (make-move game))
     (end-game game)))
 
 (defn- make-move [game]
   (ui/show-board (.board game))
-  (take-turn game))
+  (game/take-turn game))
 
 (defn- end-game [game]
-  (show-board (.board game))
-  (if (has-winner? game)
-    (ui/show-winner (get-winner game))
+  (ui/show-board (.board game))
+  (if (game/has-winner? game)
+    (ui/show-winner (game/get-winner game))
     (ui/show-draw))
   (restart))
 

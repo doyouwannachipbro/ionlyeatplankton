@@ -1,6 +1,6 @@
 (ns ionlyeatplankton.players
-  (:require [ionlyeatplankton.ui :as ui :refer [get-move]]
-            [ionlyeatplankton.computer :as ai :refer [get-best-move]]))
+  (:require [ionlyeatplankton.ui :refer [get-move] :as ui]
+            [ionlyeatplankton.computer :refer [get-best-move] :as ai]))
 
 (def human ui/get-move)
 (def computer ai/get-best-move)

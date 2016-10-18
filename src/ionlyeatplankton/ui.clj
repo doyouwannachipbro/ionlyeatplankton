@@ -54,7 +54,7 @@
       (read-string input))))
 
 (defn get-move [board _]
-  (show-move-instructions (size board))
+  (show-move-instructions (board/size board))
   (let [input (dec (get-number (count board)))]
     (if (not (valid-move? input board))
       (do (show-invalid-move)
@@ -67,13 +67,13 @@
   (println "That is not a valid move."))
 
 (defn- valid-move? [move board]
-  (contains? (set (available-moves board)) move))
+  (contains? (set (board/available-moves board)) move))
 
 (defn- show-row [row]
   (str " " (join " | " (map show-cell row)) " "))
 
 (defn- create-rows [board]
-  (map show-row (into [] (partition (width board) (add-indexes board)))))
+  (map show-row (into [] (partition (board/width board) (add-indexes board)))))
 
 (defn- add-indexes [board]
   (map-indexed (fn [index value] (vector (inc index) value)) board))

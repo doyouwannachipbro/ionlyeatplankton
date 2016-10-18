@@ -1,23 +1,23 @@
 (ns ionlyeatplankton.game
-  (:require [ionlyeatplankton.board :refer :all]
-            [ionlyeatplankton.players :refer :all]))
+  (:require [ionlyeatplankton.board :refer :all :as board]
+            [ionlyeatplankton.players :refer :all :as players]))
 
 (declare count-marks player-mark player-move)
 
 (defrecord Game [board move-functions])
 
 (defn create-game [board-size game-type]
-  (Game. (create-board board-size) (choose-game game-type)))
+  (Game. (board/create-board board-size) (players/choose-game game-type)))
 
 (defn take-turn [game]
-  (Game. (mark (.board game) (player-move game) (player-mark game))
+  (Game. (board/mark (.board game) (player-move game) (player-mark game))
          (reverse (.move-functions game))))
 
 (defn inplay? [game]
-  (= :inplay (state (.board game))))
+  (= :inplay (board/state (.board game))))
 
 (defn has-winner? [game]
-  (= :winner (state (.board game))))
+  (= :winner (board/state (.board game))))
 
 (defn get-winner [game]
   (winner (.board game)))
