@@ -57,9 +57,9 @@
   (show-move-instructions (size board))
   (let [input (dec (get-number (count board)))]
     (if (not (valid-move? input board))
-        (do (show-invalid-move)
-            (get-move board _))
-        input)))
+      (do (show-invalid-move)
+          (get-move board _))
+      input)))
 
 ;;; private methods
 

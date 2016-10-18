@@ -13,6 +13,15 @@
   (Game. (mark (.board game) (player-move game) (player-mark game))
          (reverse (.move-functions game))))
 
+(defn inplay? [game]
+  (= :inplay (state (.board game))))
+
+(defn has-winner? [game]
+  (= :winner (state (.board game))))
+
+(defn get-winner [game]
+  (winner (.board game)))
+
 (defn- player-mark [game]
   (let [num-x (count-marks X (.board game))
         num-o (count-marks O (.board game))]

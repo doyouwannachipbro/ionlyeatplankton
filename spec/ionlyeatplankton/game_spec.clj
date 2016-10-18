@@ -26,8 +26,8 @@
 
   (it "can be create with a board size and player match up"
     (let [game (create-game 3 1)]
-    (should= [human human] (.move-functions game))
-    (should= [? ? ? ? ? ? ? ? ?] (.board game))))
+      (should= [human human] (.move-functions game))
+      (should= [? ? ? ? ? ? ? ? ?] (.board game))))
 
   (it "will prompt for a human move"
     (take-turn (Game. (create-board 3) [ui/get-move ui/get-move]))
@@ -54,5 +54,31 @@
               O ? X
               X O ?] (get-board (take-turn (Game. (make-board [X O ?
                                                                ? ? X
-                                                               X O ?]) [ui/get-move ui/get-move]))))))
+                                                               X O ?]) [ui/get-move ui/get-move])))))
+  (it "knows if the game is inplay"
+    (should (inplay? (Game. (create-board 3) [human human]))))
+
+  (it "knows if the game is not inplay"
+    (should-not (inplay? (Game. [X X X
+                                 O O ?
+                                 ? ? ?] [human human]))))
+
+  (it "knows if the game has a winner"
+    (should (has-winner? (Game. [X X X
+                                 O O ?
+                                 ? ? ?] [human human]))))
+
+  (it "knows if the game does not have a winner"
+    (should-not (has-winner? (Game. (create-board 3) [human human]))))
+
+  (it "can retrieve the winning mark"
+    (should= X (get-winner (Game. [X X X
+                                   O O ?
+                                   ? ? ?] [human human]))))
+
+  (it "can retrieve another winning mark"
+    (should= O (get-winner (Game. [X X ?
+                                   O O O
+                                   ? X ?] [human human]))))
+  )
 
