@@ -5,7 +5,7 @@
 (describe "Board"
 
   (defn make-board [board]
-    board)
+    (to-vector board))
 
   (it "knows its size"
     (should= 9 (size (create-board 3))))
@@ -80,27 +80,27 @@
   (it "returns :no-winner if no winner in new game"
     (should= :no-winner (winner (create-board 4))))
 
-  (it "knows when X is the winner"
+  (it "knows there is a winner when it is X"
     (should= :winner (state (make-board [X X X
                                          O O ?
                                          ? ? ?]))))
 
-  (it "knows when X is the winner on a full board"
+  (it "knows there is a winner on a full board"
     (should= :winner (state (make-board [X X O
                                          O X O
                                          X O X]))))
 
-  (it "knows when O is the winner"
+  (it "knows there is a winner when it is O"
     (should= :winner (state (make-board [X X ?
                                          O O O
                                          ? X ?]))))
 
-  (it "knows when the game is draw"
+  (it "knows there is a draw"
     (should= :draw (state (make-board [X X O
                                        O O X
                                        X X O]))))
 
-  (it "knows when the game is inplay"
+  (it "knows when board is  inplay"
     (should= :inplay (state (make-board [X X ?
                                          O O ?
                                          ? ? ?])))))

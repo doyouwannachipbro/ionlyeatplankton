@@ -2,7 +2,7 @@
   (:require [ionlyeatplankton.board :refer :all :as board])
   (:use [clojure.string :only (join)]))
 
-(declare clear-screen show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
+(declare clear-screen show-invalid-move valid-move? show-row create-rows show-cell ansi-styles ansi colorize add-indexes)
 
 (defn show-board [board]
   (clear-screen)
@@ -22,8 +22,8 @@
 (defn show-invalid-selection []
   (println "Please make a selection from the options presented"))
 
-(defn show-move-instructions []
-  (println "Mark the board by selecting a number from 1-9\n"))
+(defn show-move-instructions [board-size]
+  (println (str "Mark the board by selecting a number from 1-" board-size "\n")))
 
 (defn show-draw []
   (println "It's a draw!"))
@@ -40,6 +40,9 @@
 (defn clear-screen []
   (println "\033[H\033[2J"))
 
+(defn show-computer-thinking []
+  (println "Computer is thinking..."))
+
 (defn get-line []
   (clojure.string/trim (read-line)))
 
@@ -50,13 +53,27 @@
           (get-number max))
       (read-string input))))
 
+(defn get-move [board _]
+  (show-move-instructions (board/size board))
+  (let [input (dec (get-number (count board)))]
+    (if (not (valid-move? input board))
+      (do (show-invalid-move)
+          (get-move board _))
+      input)))
+
 ;;; private methods
+
+(defn- show-invalid-move []
+  (println "That is not a valid move."))
+
+(defn- valid-move? [move board]
+  (contains? (set (board/available-moves board)) move))
 
 (defn- show-row [row]
   (str " " (join " | " (map show-cell row)) " "))
 
 (defn- create-rows [board]
-  (map show-row (into [] (partition (width board) (add-indexes board)))))
+  (map show-row (into [] (partition (board/width board) (add-indexes board)))))
 
 (defn- add-indexes [board]
   (map-indexed (fn [index value] (vector (inc index) value)) board))

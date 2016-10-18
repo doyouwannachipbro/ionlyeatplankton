@@ -38,7 +38,7 @@
 (defn state [board]
   (let [[full win-state] [(full? board) (winner board)]]
     (cond
-      (not= win-state :no-winner) :winner
+      (= Mark (type win-state)) :winner
       (= full true) :draw
       :else :inplay)))
 

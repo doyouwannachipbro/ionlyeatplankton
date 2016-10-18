@@ -1,35 +1,31 @@
 (ns ionlyeatplankton.runner
   (:require [ionlyeatplankton.ui :refer :all :as ui]
-            [ionlyeatplankton.players :refer :all]
-            [ionlyeatplankton.game :refer :all :as game]
-            [ionlyeatplankton.board :refer :all :as board])
+            [ionlyeatplankton.game :refer :all :as game])
   (:import [ionlyeatplankton.game Game]))
 
 (declare setup-game play-game make-move end-game restart)
 
 (defn start []
-  (let [new-game (Game. (create-board 3) (choose-game (setup-game)))]
-    (play-game new-game)))
-
-(defn- play-game [game]
-  (if (= :inplay (state (.board game)))
-    (recur (make-move game))
-    (end-game (.board game))))
+  (play-game (game/create-game 3 (setup-game))))
 
 (defn- setup-game []
   (ui/show-welcome)
   (ui/show-game-choice-menu)
   (ui/get-number 4))
 
+(defn- play-game [game]
+  (if (game/inplay? game)
+    (recur (make-move game))
+    (end-game game)))
+
 (defn- make-move [game]
   (ui/show-board (.board game))
-  (Game. (board/mark (.board game) (get-move game) (current-player game))
-         (reverse (.players game))))
+  (game/take-turn game))
 
-(defn- end-game [board]
-  (show-board board)
-  (if (= :winner (state board))
-    (ui/show-winner (winner board))
+(defn- end-game [game]
+  (ui/show-board (.board game))
+  (if (game/has-winner? game)
+    (ui/show-winner (game/get-winner game))
     (ui/show-draw))
   (restart))
 
