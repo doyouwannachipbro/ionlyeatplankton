@@ -3,7 +3,7 @@
             [ionlyeatplankton.game :refer :all :as game])
   (:import [ionlyeatplankton.game Game]))
 
-(declare setup-game play-game make-move end-game restart)
+(declare setup-game play-game play-turn end-game restart)
 
 (defn start []
   (play-game (game/create-game 3 (setup-game))))
@@ -15,10 +15,10 @@
 
 (defn- play-game [game]
   (if (game/inplay? game)
-    (recur (make-move game))
+    (recur (play-turn game))
     (end-game game)))
 
-(defn- make-move [game]
+(defn- play-turn [game]
   (ui/show-board (.board game))
   (game/take-turn game))
 
