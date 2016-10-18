@@ -5,7 +5,7 @@
 (describe "Board"
 
   (defn make-board [board]
-    board)
+    (to-vector board))
 
   (it "knows its size"
     (should= 9 (size (create-board 3))))
